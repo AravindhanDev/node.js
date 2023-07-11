@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form>
+            <input type="date" id="to" />
+            <button type="button" id="submit">Submit</button>
+        </form>
+
+        <script>
+            const submit = document.getElementById("submit")
+            const toInput = document.getElementById("to")
+
+            submit.addEventListener("click", async function () {
+                let options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        to: toInput.value,
+                    }),
+                }
+                const response = await fetch(
+                    "http://localhost:9000/fromNow",
+                    options
+                )
+                const res = await response.json()
+                console.log(res)
+            })
+        </script>
+    </body>
+</html>
